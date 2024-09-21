@@ -18,7 +18,6 @@ namespace PEM.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(Guid id)
         {
-            throw new Exception("teste");
             var query = new GetUserByIdQuery(id);
 
             return Ok(await _mediator.Send(query));

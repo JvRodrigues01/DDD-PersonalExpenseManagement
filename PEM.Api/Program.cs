@@ -1,3 +1,5 @@
+using PEM.Api.Configuration;
+using PEM.Api.Middlewares;
 using PEM.Application;
 using PEM.Infrastructure;
 
@@ -8,29 +10,26 @@ IConfiguration configuration = builder.Configuration;
 builder.Services
     .AddMediator()
     .AddApplication()
-    .AddInfra(builder.Configuration);
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    .AddInfra(configuration)
+    .AddPresentation()
+    .AddAuthorizationAndAuthentication(configuration)
+    .AddMiddlewares()
+    .ConfigureCors();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseCors("AllowAnyOrigin");
 
 app.UseAuthentication();
-app.UseAuthorization();
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 app.Run();

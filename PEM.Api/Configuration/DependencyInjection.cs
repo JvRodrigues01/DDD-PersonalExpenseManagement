@@ -8,7 +8,7 @@ namespace PEM.Api.Configuration
     {
         public static IServiceCollection AddAuthorizationAndAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            var key = Encoding.ASCII.GetBytes("3766203dc17a49f87208ffcec02b4866075aa82c74aa3561da68548611b679dc");
+            var key = Encoding.ASCII.GetBytes(configuration["Jwt:SecretKey"]);
 
             services.AddAuthentication(options =>
             {

@@ -15,8 +15,8 @@ namespace PEM.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetUserById(Guid id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById([FromRoute] Guid id)
         {
             var query = new GetUserByIdQuery(id);
 
@@ -28,7 +28,7 @@ namespace PEM.Api.Controllers
         {
             var result = await _mediator.Send(command);
 
-            return CreatedAtAction(nameof(GetUserById), new { id = result.Data }, command);
+            return CreatedAtAction(nameof(GetUserById), new { id = result.Data }, result);
         }
     }
 }

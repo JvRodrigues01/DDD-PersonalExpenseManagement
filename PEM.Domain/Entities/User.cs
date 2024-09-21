@@ -20,7 +20,7 @@ namespace PEM.Domain.Entities
         public string Email { get; private set; }
         public string Password { get; private set; }
 
-        public IList<Expense> Expenses {  get; private set; }
+        public IList<Expense> Expenses { get; private set; }
         public IList<Notification> Notifications { get; private set; }
         public IList<RecurringExpense> RecurringExpenses { get; private set; }
         public IList<Budget> Budgets { get; private set; }

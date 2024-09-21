@@ -13,7 +13,6 @@ namespace PEM.Api.Controllers
         {
             _mediator = mediator;
         }
-        
 
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] AuthCommand command)

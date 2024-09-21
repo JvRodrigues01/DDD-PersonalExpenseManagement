@@ -1,0 +1,6 @@
+@PEM.Api_HostAddress = http://localhost:5243
+
+GET {{PEM.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
